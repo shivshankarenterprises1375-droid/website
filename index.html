@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShivShankar Enterprises - Global Import Export</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 130PX;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5530;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6b35;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="300" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="400" cy="600" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="900" cy="800" r="3" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c5530;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-features {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature h3 {
+            color: #2c5530;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        } */
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            color: #2c5530;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Fix the contact section layout */
+        .contact-container {
+            display: block !important;   /* Override grid so flex can work properly */
+        }
+
+        .contact-info {
+            display: flex !important;    /* Flex layout for row alignment */
+            flex-direction: row !important;
+            justify-content: space-between; /* Even spacing across */
+            align-items: stretch;
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .contact-item {
+            flex: 1 1 0 !important;       /* Equal width for all items */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            min-width: 0;                 /* Prevent flex overflow */
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c5530;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            /* background: linear-gradient(45deg, #ff6b35, #f7931e); */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            scroll-margin-top: 80px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Logo_Shivshankar_Enterprises.jpg" height="125%" width="125%">
+                <!-- <span class="logo-text">ShivShankar Enterprises</span> -->
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Global Trade Solutions</h1>
+            <p>Your trusted partner in agricultural products and commodity export-import, connecting India to the world
+                with quality and reliability.</p>
+            <a href="#products" class="cta-button">Explore Our Products</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About ShivShankar Enterprises</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>ShivShankar Enterprises is a leading export-import company specializing in agricultural products and
+                    commodities. With years of experience in international trade, we have built strong relationships
+                    with suppliers and buyers across the globe.</p>
+                <p>Our commitment to quality, timely delivery, and competitive pricing has made us a trusted partner for
+                    businesses worldwide. We ensure that all our products meet international standards and are carefully
+                    sourced from the best producers.</p>
+            </div>
+            <div class="about-features">
+                <div class="feature">
+                    <h3>🌍 Global Reach</h3>
+                    <p>Serving customers across multiple continents with reliable shipping and logistics</p>
+                </div>
+                <div class="feature">
+                    <h3>✅ Quality Assured</h3>
+                    <p>All products undergo strict quality control and meet international standards</p>
+                </div>
+                <div class="feature">
+                    <h3>🤝 Trusted Partnership</h3>
+                    <p>Long-term relationships built on trust, transparency, and mutual growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <h2 class="section-title">Our Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <!-- <div class="product-image">🍌</div> -->
+                <div>
+                    <img src="Banana.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Banana</h3>
+                    <p>Premium quality bananas with excellent taste and nutritional value. Carefully selected and packed
+                        for export markets.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <!-- <div class="product-image">🍎</div> -->
+                <div>
+                    <img src="Pomegranate.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Pomegranate</h3>
+                    <p>Fresh, juicy pomegranates with rich antioxidant content. Carefully selected and packed to
+                        preserve freshness.</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- <div class="product-image">🌶️</div> -->
+                <div>
+                    <img src="Green_Chilli.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Green Chilli</h3>
+                    <p>Fresh, high-quality green chillies sourced directly from premium farms. Available in various
+                        grades and packaging options.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <!-- <div class="product-image">🧅</div> -->
+                <div>
+                    <img src="Onion.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Onion</h3>
+                    <p>Superior quality onions with extended shelf life. Available in different sizes and varieties to
+                        meet diverse market needs.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <!-- <div class="product-image">🌾</div> -->
+                <div>
+                    <img src="Rice.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Rice</h3>
+                    <p>Premium basmati and non-basmati rice varieties. Aromatic, long-grain rice processed with modern
+                        techniques.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <!-- <div class="product-image">🥥</div> -->
+                <div>
+                    <img src="Coconut.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Semi Husked Coconut</h3>
+                    <p>Premium quality semi-husked coconuts with natural fiber retained. Perfect for various industrial
+                        applications.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <!-- <div class="product-image">🪱</div> -->
+                <div>
+                    <img src="Vermicompost.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Vermicompost</h3>
+                    <p>Organic vermicompost and worm castings. Rich in nutrients and perfect for sustainable agriculture
+                        practices.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <!-- <div class="product-image">♻️</div> -->
+                <div>
+                    <img src="Metal.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Scrap</h3>
+                    <p>High-grade metal scrap and recyclable materials. Contributing to sustainable practices and
+                        circular economy.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <!-- <div class="product-image">🥔</div> -->
+                <div>
+                    <img src="Suran.png" height="375px" width="375px">
+                </div>
+                <div class="product-info">
+                    <h3>Suran (Elephant Yam)</h3>
+                    <p>Fresh elephant yam with high nutritional content. Carefully harvested and processed for optimal
+                        quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h4>Address</h4>
+                        <p>Karunj, Lonavala, Pune, Maharashtra, India - 410405</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+919607521375</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>info@shivshankarenterprises.com</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 ShivShankar Enterprises. All rights reserved. | Delivering Quality Worldwide</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling and active navigation
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section, .hero');
+
+            // Handle navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    // Remove active class from all links
+                    navLinks.forEach(nl => nl.classList.remove('active'));
+                    // Add active class to clicked link
+                    this.classList.add('active');
+
+                    // Scroll to target section
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+
+            // Handle scroll events for active navigation
+            window.addEventListener('scroll', function () {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Form submission
+            const contactForm = document.querySelector('form');
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+
+            // Add scroll animation for product cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
