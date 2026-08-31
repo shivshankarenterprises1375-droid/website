@@ -63,7 +63,7 @@ export default function Navbar() {
           <img
             src={logo}
             alt="ShivShankar Enterprises"
-            className="h-11 w-11 rounded-full object-cover ring-2 ring-forest-600/30"
+            className="h-11 w-11 rounded-none object-cover ring-2 ring-forest-600/30"
           />
           <span
             className={`font-display text-lg font-bold tracking-tight ${
